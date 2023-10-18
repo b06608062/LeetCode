@@ -1,14 +1,14 @@
 // 3. Longest Substring Without Repeating Characters
-#include <set>
 #include <stdio.h>
 #include <string>
+#include <unordered_set>
 using namespace std;
 
 class Solution {
 public:
   int lengthOfLongestSubstring(string s) {
     int max = 0;
-    set<char> seen;
+    unordered_set<char> seen;
     int start = 0;
     for (int i = 0; i < s.size(); ++i) {
       char c = s[i];
