@@ -15,24 +15,35 @@ public:
       return list2;
     else if (list2 == nullptr)
       return list1;
-
-    ListNode *head = new ListNode(0);
-    ListNode *p = head;
-    while (list1 != nullptr && list2 != nullptr) {
-      if (list1->val <= list2->val) {
-        p->next = new ListNode(list1->val);
-        list1 = list1->next;
-      } else {
-        p->next = new ListNode(list2->val);
-        list2 = list2->next;
-      }
-      p = p->next;
+    ListNode *ptr1 = list1;
+    ListNode *ptr2 = list2;
+    ListNode *head;
+    if (ptr1->val <= ptr2->val) {
+      head = ptr1;
+      ptr1 = ptr1->next;
+    } else {
+      head = ptr2;
+      ptr2 = ptr2->next;
     }
-    if (list1 != nullptr)
-      p->next = list1;
-    else
-      p->next = list2;
 
-    return head->next;
+    ListNode *curr = head;
+
+    while (ptr1 != nullptr && ptr2 != nullptr) {
+      if (ptr1->val <= ptr2->val) {
+        curr->next = ptr1;
+        ptr1 = ptr1->next;
+      } else {
+        curr->next = ptr2;
+        ptr2 = ptr2->next;
+      }
+      curr = curr->next;
+    }
+
+    if (ptr1 != nullptr)
+      curr->next = ptr1;
+    else
+      curr->next = ptr2;
+
+    return head;
   }
 };
