@@ -29,9 +29,8 @@ public:
   bool search(string word) { return searchDot(word, this->root); }
 
   bool searchDot(string word, DicNode *root) {
-    int size = word.size();
-    if (size == 0)
-      return true;
+    if (word.size() == 0)
+      return root->isWord;
 
     DicNode *p = root;
     char c = word[0];
@@ -40,12 +39,9 @@ public:
       for (auto child : p->children) {
         if (child == nullptr)
           continue;
-        found = searchDot(word.substr(1), child);
-        found = size == 1 ? found && child->isWord : found;
-        if (found)
+        if ((found = searchDot(word.substr(1), child)))
           break;
       }
-
     } else {
       int next = c - 'a';
       if (p->children[next] == nullptr)
@@ -53,7 +49,6 @@ public:
 
       found = searchDot(word.substr(1), p->children[next]);
       p = p->children[next];
-      found = size == 1 ? found && p->isWord : found;
     }
 
     return found;
