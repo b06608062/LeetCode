@@ -14,6 +14,7 @@ public:
       G[f[0]].push_back({f[1], f[2]});
     vector<int> costs(n, max);
     queue<pair<int, int>> q;
+
     q.push({src, 0});
     for (int i = 0; i <= k; ++i) {
       if (q.empty())
