@@ -1,5 +1,5 @@
 // 743. Network Delay Time
-// Bellman-Ford
+// Floyd–Warshall
 #include <climits>
 #include <math.h>
 #include <vector>

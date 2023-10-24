@@ -1,5 +1,5 @@
 // 743. Network Delay Time
-// Floyd–Warshall
+// Bellman-Ford
 #include <climits>
 #include <math.h>
 #include <vector>
@@ -9,22 +9,16 @@ class Solution {
 public:
   int networkDelayTime(vector<vector<int>> &times, int n, int k) {
     int max = 99 * 100 + 1;
-    vector<vector<int>> D(n + 1, vector<int>(n + 1, max));
-    for (auto t : times)
-      D[t[0]][t[1]] = t[2];
-    for (int i = 1; i <= n; ++i)
-      D[i][i] = 0;
+    vector<int> dist(n + 1, max);
+    dist[k] = 0;
+    for (int i = 1; i < n; i++) {
+      for (auto t : times) {
+        int u = t[0], v = t[1], d = t[2];
+        dist[v] = min(dist[v], dist[u] + d);
+      }
+    }
+    int maxDist = *max_element(dist.begin() + 1, dist.end());
 
-    for (int k = 1; k <= n; ++k)
-      for (int i = 1; i <= k; ++i)
-        for (int j = 1; j <= k; ++j)
-          D[i][j] = min(D[i][j], D[i][k] + D[k][k]);
-
-    int ans = 0;
-    for (int i = 1; i <= n; ++i)
-      for (int j = 1; j <= k; ++j)
-        ans = ans > D[i][j] ? ans : D[i][j];
-
-    return ans == max ? -1 : ans;
+    return maxDist == max ? -1 : maxDist;
   }
 };
