@@ -9,7 +9,7 @@ public:
     int length = temperatures.size();
     vector<int> ans(length, 0);
     stack<pair<int, int>> st;
-    for (int i = 0; i < length; i++) {
+    for (int i = 0; i < length; ++i) {
       int current = temperatures[i];
       while (!st.empty() && current > st.top().second) {
         pair<int, int> past = st.top();

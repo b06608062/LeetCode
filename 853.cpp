@@ -8,7 +8,7 @@ public:
   int carFleet(int target, vector<int> &position, vector<int> &speed) {
     vector<pair<int, int>> cars;
     int length = position.size();
-    for (int i = 0; i < length; i++) {
+    for (int i = 0; i < length; ++i) {
       cars.push_back({position[i], speed[i]});
     }
     sort(cars.begin(), cars.end(), [](pair<int, int> &a, pair<int, int> &b) {

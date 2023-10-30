@@ -22,7 +22,7 @@ public:
     int tmp = stack[t--];
     if (tmp == min) {
       min = 2147483647;
-      for (int i = 0; i <= t; i++)
+      for (int i = 0; i <= t; ++i)
         min = min < stack[i] ? min : stack[i];
     }
   }

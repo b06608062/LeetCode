@@ -11,7 +11,7 @@ public:
     int max = 99 * 100 + 1;
     vector<int> dist(n + 1, max);
     dist[k] = 0;
-    for (int i = 1; i < n; i++) {
+    for (int i = 1; i < n; ++i) {
       for (auto t : times) {
         int u = t[0], v = t[1], d = t[2];
         dist[v] = min(dist[v], dist[u] + d);

@@ -34,7 +34,7 @@ public:
     }
 
     int ans = 0;
-    for (int i = 1; i <= n; i++)
+    for (int i = 1; i <= n; ++i)
       ans = ans > dist[i] ? ans : dist[i];
 
     return ans == max ? -1 : ans;

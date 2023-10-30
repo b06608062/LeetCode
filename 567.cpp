@@ -13,7 +13,7 @@ public:
     unordered_map<char, int> m1, m2;
     unordered_set<char> s;
     int s1Hash = 0, s2Hash = 0;
-    for (int i = 0; i < s1Length; i++) {
+    for (int i = 0; i < s1Length; ++i) {
       char c1 = s1[i];
       char c2 = s2[i];
       m1[c1]++;

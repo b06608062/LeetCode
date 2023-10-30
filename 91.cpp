@@ -5,7 +5,6 @@ using namespace std;
 
 class Solution {
 public:
-  bool flag;
   int numDecodings(string s) {
     int n = s.length();
     if (n == 0 || s[0] == '0')

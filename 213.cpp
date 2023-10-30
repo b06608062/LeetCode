@@ -19,10 +19,10 @@ public:
     vector<int> ex1(l + 1);
     ex1[0] = 0;
     ex1[1] = 0;
-    for (int i = 3; i < l; i++)
+    for (int i = 3; i < l; ++i)
       in1[i] = max(in1[i - 1], in1[i - 2] + nums[i - 1]);
 
-    for (int i = 2; i <= l; i++)
+    for (int i = 2; i <= l; ++i)
       ex1[i] = max(ex1[i - 1], ex1[i - 2] + nums[i - 1]);
 
     return max(in1[l - 1], ex1[l]);

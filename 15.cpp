@@ -10,7 +10,7 @@ public:
     vector<vector<int>> ans;
     set<vector<int>> s;
     sort(nums.begin(), nums.end());
-    for (int i = 0; i < nums.size() - 2; i++) {
+    for (int i = 0; i < nums.size() - 2; ++i) {
       int target = -nums[i];
       if (target < 0)
         break;
