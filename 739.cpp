@@ -1,4 +1,3 @@
-// 739. Daily Temperatures
 #include <stack>
 #include <vector>
 using namespace std;
@@ -8,16 +7,17 @@ public:
   vector<int> dailyTemperatures(vector<int> &temperatures) {
     int length = temperatures.size();
     vector<int> ans(length, 0);
-    stack<pair<int, int>> st;
-    for (int i = 0; i < length; ++i) {
+    stack<pair<int, int>> myStack;
+    for (int i = 0; i < length; i++) {
       int current = temperatures[i];
-      while (!st.empty() && current > st.top().second) {
-        pair<int, int> past = st.top();
-        st.pop();
+      while (!myStack.empty() && current > myStack.top().second) {
+        pair<int, int> past = myStack.top();
+        myStack.pop();
         ans[past.first] = i - past.first;
       }
-      st.push({i, current});
+      myStack.push({i, current});
     }
+
     return ans;
   }
 };

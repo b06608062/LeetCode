@@ -1,4 +1,3 @@
-// 684. Redundant Connection
 #include <vector>
 using namespace std;
 
@@ -10,7 +9,7 @@ public:
   DisjoinSet(int size) {
     parent.resize(size);
     rank.resize(size, 1);
-    for (int i = 0; i < size; ++i) {
+    for (int i = 0; i < size; i++) {
       parent[i] = i;
     }
   };

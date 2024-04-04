@@ -1,4 +1,3 @@
-// 141. Linked List Cycle
 using namespace std;
 
 struct ListNode {

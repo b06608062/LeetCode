@@ -1,4 +1,3 @@
-// 104. Maximum Depth of Binary Tree
 #include <algorithm>
 using namespace std;
 
@@ -19,6 +18,7 @@ public:
       return 0;
     int leftDepth = maxDepth(root->left);
     int rightDepth = maxDepth(root->right);
+
     return max(leftDepth, rightDepth) + 1;
   }
 };

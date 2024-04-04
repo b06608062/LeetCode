@@ -1,4 +1,3 @@
-// 875. Koko Eating Bananas
 #include <iostream>
 #include <vector>
 using namespace std;

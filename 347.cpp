@@ -1,4 +1,3 @@
-// 347. Top K Frequent Elements
 #include <algorithm>
 #include <map>
 #include <vector>
@@ -7,22 +6,20 @@ using namespace std;
 class Solution {
 public:
   vector<int> topKFrequent(vector<int> &nums, int k) {
-    map<int, int> m;
+    map<int, int> myMap;
     for (const int &val : nums) {
-      m[val]++;
+      myMap[val]++;
     }
-
-    vector<pair<int, int>> v(m.begin(), m.end());
+    vector<pair<int, int>> myVector(myMap.begin(), myMap.end());
     auto compare = [](const pair<int, int> &a, const pair<int, int> &b) {
       return a.second < b.second;
     };
-    make_heap(v.begin(), v.end(), compare);
-
+    make_heap(myVector.begin(), myVector.end(), compare);
     vector<int> topK;
-    for (int i = 0; i < k; ++i) {
-      pop_heap(v.begin(), v.end(), compare);
-      topK.push_back(v[v.size() - 1].first);
-      v.pop_back();
+    for (int i = 0; i < k; i++) {
+      pop_heap(myVector.begin(), myVector.end(), compare);
+      topK.push_back(myVector[myVector.size() - 1].first);
+      myVector.pop_back();
     }
 
     return topK;

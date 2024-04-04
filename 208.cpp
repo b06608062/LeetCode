@@ -1,22 +1,19 @@
-// 208. Implement Trie (Prefix Tree)
 #include <string>
 using namespace std;
 
+struct TrieNode {
+  bool isWord;
+  TrieNode *children[26];
+  TrieNode() {
+    isWord = false;
+    for (int i = 0; i < 26; i++) {
+      children[i] = nullptr;
+    }
+  }
+};
+
 class Trie {
 public:
-  class TrieNode {
-  public:
-    bool isWord;
-
-    TrieNode *children[26];
-    TrieNode() {
-      isWord = false;
-      for (int i = 0; i < 26; ++i) {
-        children[i] = nullptr;
-      }
-    }
-  };
-
   TrieNode *root;
 
   Trie() { root = new TrieNode(); }

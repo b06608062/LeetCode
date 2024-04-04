@@ -1,4 +1,3 @@
-// 91. Decode Ways
 #include <string>
 #include <vector>
 using namespace std;
@@ -6,37 +5,35 @@ using namespace std;
 class Solution {
 public:
   int numDecodings(string s) {
-    int n = s.length();
-    if (n == 0 || s[0] == '0')
+    if (s[0] == '0')
       return 0;
-
-    vector<int> v(n + 1);
-    v[0] = 1;
-    v[1] = 1;
-    for (int i = 2; i <= n; ++i) {
-      char cur = s[i - 1];
-      int res = isValid(s, i - 2);
-      if (res == 0) {
-        if (cur == '0')
+    int n = s.length();
+    if (n == 1)
+      return 1;
+    vector<int> dp(n + 1, 1);
+    dp[1] = 1;
+    for (int i = 2; i <= n; i++) {
+      bool canDecode = helper(s, i - 2);
+      if (s[i - 1] == '0') {
+        if (canDecode)
+          dp[i] = dp[i - 2];
+        else
           return 0;
-        else
-          v[i] = v[i - 1];
       } else {
-        if (cur == '0')
-          v[i] = v[i - 2];
+        if (canDecode)
+          dp[i] = dp[i - 1] + dp[i - 2];
         else
-          v[i] = v[i - 1] + v[i - 2];
+          dp[i] = dp[i - 1];
       }
     }
 
-    return v[n];
+    return dp[n];
   }
+  bool helper(string &s, int begin) {
+    int decode = stoi(s.substr(begin, 2));
+    if (decode >= 10 && decode <= 26)
+      return true;
 
-  int isValid(string &s, int i) {
-    int dec = stoi(s.substr(i, 2));
-    if (10 <= dec && dec <= 26)
-      return 1;
-
-    return 0;
+    return false;
   }
 };

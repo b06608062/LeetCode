@@ -1,5 +1,4 @@
-// 787. Cheapest Flights Within K Stops
-#include <math.h>
+#include <algorithm>
 #include <vector>
 using namespace std;
 
@@ -12,7 +11,7 @@ public:
     vector<int> dist2(n, max);
     dist1[src] = 0;
 
-    for (int i = 0; i <= k; ++i) {
+    for (int i = 0; i <= k; i++) {
       for (auto f : flights)
         dist2[f[1]] = min(dist2[f[1]], dist1[f[0]] + f[2]);
       dist1 = dist2;

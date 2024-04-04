@@ -1,4 +1,3 @@
-// 146. LRU Cache
 #include <unordered_map>
 using namespace std;
 
@@ -69,12 +68,9 @@ public:
         Node *tmp = tail->prev;
         cache.erase(tmp->key);
         delNode(tmp);
-        pushFront(key, value);
-        cache[key] = head->next;
-      } else {
-        pushFront(key, value);
-        cache[key] = head->next;
       }
+      pushFront(key, value);
+      cache[key] = head->next;
     }
   }
 };

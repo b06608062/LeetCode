@@ -1,4 +1,3 @@
-// 853. Car Fleet
 #include <algorithm>
 #include <vector>
 using namespace std;
@@ -8,7 +7,7 @@ public:
   int carFleet(int target, vector<int> &position, vector<int> &speed) {
     vector<pair<int, int>> cars;
     int length = position.size();
-    for (int i = 0; i < length; ++i) {
+    for (int i = 0; i < length; i++) {
       cars.push_back({position[i], speed[i]});
     }
     sort(cars.begin(), cars.end(), [](pair<int, int> &a, pair<int, int> &b) {
@@ -20,7 +19,7 @@ public:
     }
     int count = 1;
     double fleet = times[length - 1];
-    for (int i = length - 2; i >= 0; --i) {
+    for (int i = length - 2; i >= 0; i--) {
       if (times[i] > fleet) {
         count++;
         fleet = times[i];

@@ -1,4 +1,3 @@
-// 973. K Closest Points to Origin
 #include <cmath>
 #include <queue>
 #include <vector>

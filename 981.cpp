@@ -1,4 +1,3 @@
-// 981. Time Based Key-Value Store
 #include <string>
 #include <unordered_map>
 #include <vector>
@@ -6,28 +5,25 @@ using namespace std;
 
 class TimeMap {
 private:
-  unordered_map<string, vector<pair<int, int>>> m;
-  vector<string> valueBox;
-  int count;
+  unordered_map<string, vector<pair<int, string>>> myMap;
 
 public:
-  TimeMap() { count = 0; }
+  TimeMap() {}
 
   void set(string key, string value, int timestamp) {
-    m[key].push_back({timestamp, count++});
-    valueBox.push_back(value);
+    myMap[key].push_back({timestamp, value});
   }
 
   string get(string key, int timestamp) {
-    int index = matcher(m[key], timestamp);
-    return index == -1 ? "" : valueBox[index];
+
+    return matcher(myMap[key], timestamp);
   }
 
-  int matcher(vector<pair<int, int>> &v, int &timestamp) {
+  string matcher(vector<pair<int, string>> &v, int &timestamp) {
     int length = v.size();
     int left = 0, right = length - 1;
     while (left <= right) {
-      int mid = left + (right - left) / 2;
+      int mid = (left + right) / 2;
       int current = v[mid].first;
       if (current == timestamp) {
         return v[mid].second;
@@ -38,14 +34,8 @@ public:
       }
     }
     if (right == -1)
-      return -1;
+      return "";
+
     return v[left - 1].second;
   }
 };
-
-/**
- * Your TimeMap object will be instantiated and called as such:
- * TimeMap* obj = new TimeMap();
- * obj->set(key,value,timestamp);
- * string param_2 = obj->get(key,timestamp);
- */

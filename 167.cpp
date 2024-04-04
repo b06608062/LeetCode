@@ -1,4 +1,3 @@
-// 167. Two Sum II - Input Array Is Sorted
 #include <vector>
 using namespace std;
 
@@ -16,6 +15,7 @@ public:
         right--;
       }
     }
+
     return vector<int>({left + 1, right + 1});
   }
 };

@@ -1,5 +1,4 @@
-// 138. Copy List with Random Pointer
-#include <vector>
+#include <unordered_map>
 using namespace std;
 
 class Node {
@@ -20,28 +19,21 @@ public:
   Node *copyRandomList(Node *head) {
     if (head == NULL)
       return NULL;
+    unordered_map<Node *, Node *> myMap;
     Node *p = head;
-    Node *q;
-    vector<Node *> v1;
-    vector<Node *> v2;
     while (p != NULL) {
-      v1.push_back(p);
-      q = new Node(p->val);
-      v2.push_back(q);
+      myMap[p] = new Node(p->val);
       p = p->next;
     }
-    v1.push_back(NULL);
-    v2.push_back(NULL);
+    myMap[NULL] = NULL;
 
-    int size = v1.size();
-    for (int i = 0; i < size - 1; ++i) {
-      int rIndex =
-          distance(v1.begin(), find(v1.begin(), v1.end(), v1[i]->random));
-      v2[i]->random = v2[rIndex];
-      v2[i]->next = v2[i + 1];
+    p = head;
+    while (p != NULL) {
+      myMap[p]->next = myMap[p->next];
+      myMap[p]->random = myMap[p->random];
+      p = p->next;
     }
-    head = v2[0];
 
-    return head;
+    return myMap[head];
   }
 };

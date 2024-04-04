@@ -1,4 +1,3 @@
-// 22. Generate Parentheses
 #include <stack>
 #include <string>
 #include <vector>

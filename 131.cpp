@@ -1,4 +1,3 @@
-// 131. Palindrome Partitioning
 #include <string>
 #include <vector>
 using namespace std;
@@ -19,7 +18,7 @@ public:
 
   bool isPalindrome(int start, int end) {
     int length = end - start + 1;
-    for (int i = 0; i < length / 2; ++i) {
+    for (int i = 0; i < length / 2; i++) {
       if (s[start + i] != s[end - i])
         return false;
     }
@@ -32,7 +31,7 @@ public:
       return;
     }
 
-    for (int i = start; i < stringLength; ++i) {
+    for (int i = start; i < stringLength; i++) {
       if (isPalindrome(start, i)) {
         subset.push_back(s.substr(start, i - start + 1));
         helper(subset, i + 1);

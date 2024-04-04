@@ -1,4 +1,3 @@
-// 3. Longest Substring Without Repeating Characters
 #include <stdio.h>
 #include <string>
 #include <unordered_set>
@@ -10,7 +9,7 @@ public:
     int max = 0;
     unordered_set<char> seen;
     int start = 0;
-    for (int i = 0; i < s.size(); ++i) {
+    for (int i = 0; i < s.size(); i++) {
       char c = s[i];
       if (!seen.insert(c).second) {
         max = max > seen.size() ? max : seen.size();

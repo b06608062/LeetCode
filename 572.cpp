@@ -1,4 +1,3 @@
-// 572. Subtree of Another Tree
 using namespace std;
 
 struct TreeNode {

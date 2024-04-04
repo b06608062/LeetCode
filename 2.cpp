@@ -1,4 +1,3 @@
-// 2. Add Two Numbers
 using namespace std;
 
 struct ListNode {

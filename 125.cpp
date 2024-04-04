@@ -1,4 +1,3 @@
-// 125. Valid Palindrome
 #include <string>
 using namespace std;
 
@@ -12,11 +11,12 @@ public:
     }
     int length = t.length();
     int half = length / 2;
-    for (int i = 0; i < half; ++i) {
+    for (int i = 0; i < half; i++) {
       if (t[i] != t[length - i - 1]) {
         return false;
       }
     }
+
     return true;
   }
 };

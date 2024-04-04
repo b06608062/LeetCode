@@ -1,4 +1,3 @@
-// 40. Combination Sum II
 #include <algorithm>
 #include <vector>
 using namespace std;
@@ -19,15 +18,15 @@ public:
     return ans;
   }
 
-  void helper(vector<int> &subset, int start, int target) {
+  void helper(vector<int> &subset, int begin, int target) {
     if (target < 0) {
       return;
     } else if (target == 0) {
       ans.push_back(subset);
     } else {
-      for (int i = start; i < length; ++i) {
+      for (int i = begin; i < length; i++) {
         int num = candidates[i];
-        if (i != start && candidates[i] == candidates[i - 1])
+        if (i != begin && num == candidates[i - 1])
           continue;
         subset.push_back(num);
         helper(subset, i + 1, target - num);

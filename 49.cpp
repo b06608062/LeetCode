@@ -1,4 +1,3 @@
-// 49. Group Anagrams
 #include <algorithm>
 #include <map>
 #include <string>
@@ -9,17 +8,19 @@ class Solution {
 public:
   vector<vector<string>> groupAnagrams(vector<string> &strs) {
     vector<vector<string>> ans;
-    map<string, vector<string>> m;
+    map<string, vector<string>> myMap;
     for (auto &str : strs) {
-      m[sortString(str)].push_back(str);
+      myMap[sortString(str)].push_back(str);
     }
-    for (auto &it : m) {
+    for (auto &it : myMap) {
       ans.push_back(it.second);
     }
+
     return ans;
   }
-  string &sortString(string str) {
+  string sortString(string str) {
     sort(str.begin(), str.end());
+
     return str;
   }
 };

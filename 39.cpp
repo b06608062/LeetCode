@@ -1,4 +1,3 @@
-// 39. Combination Sum
 #include <vector>
 using namespace std;
 

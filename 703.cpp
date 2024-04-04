@@ -1,4 +1,3 @@
-// 703. Kth Largest Element in a Stream
 #include <queue>
 #include <vector>
 using namespace std;

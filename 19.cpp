@@ -1,6 +1,3 @@
-// 19. Remove Nth Node From End of List
-#include <stack>
-#include <vector>
 using namespace std;
 
 struct ListNode {
@@ -14,20 +11,15 @@ struct ListNode {
 class Solution {
 public:
   ListNode *removeNthFromEnd(ListNode *head, int n) {
-    vector<ListNode *> v;
-    ListNode *p = head;
-    while (p != nullptr) {
-      v.push_back(p);
-      p = p->next;
-    }
-
-    int len = v.size();
-    if (n == len)
-      head = head->next;
-    else if (n == 1)
-      v[len - 2]->next = nullptr;
-    else
-      v[v.size() - n - 1]->next = v[v.size() - n + 1];
+    ListNode *fast = head, *slow = head;
+    for (int i = 0; i < n; i++)
+      fast = fast->next;
+    if (!fast)
+      return head
+          ->next; // Handles the edge case if n is equal to the list's length
+    while (fast->next)
+      fast = fast->next, slow = slow->next;
+    slow->next = slow->next->next; // Remove the Nth node
 
     return head;
   }

@@ -1,4 +1,4 @@
-// 33. Search in Rotated Sorted Array
+#include <iostream>
 #include <vector>
 using namespace std;
 
@@ -6,7 +6,7 @@ class Solution {
 public:
   int search(vector<int> &nums, int target) {
     int length = nums.size();
-    if (nums[0] < nums[length - 1])
+    if (nums[0] <= nums[length - 1])
       return binarySearch(nums, 0, length - 1, target);
 
     int minIndex = findMinIndex(nums);
@@ -48,6 +48,15 @@ public:
         }
       }
     }
+
     return -1;
   }
 };
+
+int main() {
+  Solution solution;
+  vector<int> nums = {1};
+  cout << solution.search(nums, 0) << endl;
+
+  return 0;
+}

@@ -1,4 +1,3 @@
-// 543. Diameter of Binary Tree
 #include <algorithm>
 using namespace std;
 
@@ -14,22 +13,22 @@ struct TreeNode {
 
 class Solution {
 public:
+  int maxDiameter = 0;
   int diameterOfBinaryTree(TreeNode *root) {
     if (root == nullptr)
       return 0;
-    int maxDiameter = 0;
-
-    maxDepth(root, maxDiameter);
+    maxDepth(root);
 
     return maxDiameter;
   }
 
-  int maxDepth(TreeNode *root, int &maxDiameter) {
+  int maxDepth(TreeNode *root) {
     if (root == nullptr)
       return 0;
-    int leftDepth = maxDepth(root->left, maxDiameter);
-    int rightDepth = maxDepth(root->right, maxDiameter);
+    int leftDepth = maxDepth(root->left);
+    int rightDepth = maxDepth(root->right);
     maxDiameter = max(maxDiameter, leftDepth + rightDepth);
+
     return max(leftDepth, rightDepth) + 1;
   }
 };

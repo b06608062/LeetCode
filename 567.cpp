@@ -1,4 +1,3 @@
-// 567. Permutation in String
 #include <string>
 #include <unordered_map>
 #include <unordered_set>
@@ -13,7 +12,7 @@ public:
     unordered_map<char, int> m1, m2;
     unordered_set<char> s;
     int s1Hash = 0, s2Hash = 0;
-    for (int i = 0; i < s1Length; ++i) {
+    for (int i = 0; i < s1Length; i++) {
       char c1 = s1[i];
       char c2 = s2[i];
       m1[c1]++;
@@ -35,12 +34,12 @@ public:
         if (flag)
           return true;
       }
-
       m2[s2[start]]--;
       s2Hash = (s2Hash - (s2[start] % 11) + s2[start + s1Length]) % 11;
       m2[s2[start + s1Length]]++;
       start++;
     }
+
     return false;
   }
 };

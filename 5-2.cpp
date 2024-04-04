@@ -1,4 +1,3 @@
-// 5. Longest Palindromic Substring
 #include <math.h>
 #include <string>
 using namespace std;
@@ -16,7 +15,7 @@ public:
     };
     int start = 0;
     int maxLen = 0;
-    for (int i = 0; i < n; ++i) {
+    for (int i = 0; i < n; i++) {
       int cur = max(getLen(i, i), getLen(i, i + 1));
       if (cur > maxLen) {
         maxLen = cur;

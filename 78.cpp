@@ -1,4 +1,3 @@
-// 78. Subsets
 #include <vector>
 using namespace std;
 
@@ -22,9 +21,9 @@ public:
     }
 
     int num = nums[i];
-    build(subset, i + 1);
     subset.push_back(num);
     build(subset, i + 1);
     subset.pop_back();
+    build(subset, i + 1);
   }
 };

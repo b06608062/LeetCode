@@ -1,4 +1,3 @@
-// 110. Balanced Binary Tree
 #include <algorithm>
 using namespace std;
 
@@ -14,22 +13,23 @@ struct TreeNode {
 
 class Solution {
 public:
+  bool flag = true;
   bool isBalanced(TreeNode *root) {
     if (root == nullptr)
       return true;
-    bool flag = true;
-    maxDepth(root, flag);
+    maxDepth(root);
 
     return flag;
   }
 
-  int maxDepth(TreeNode *root, bool &flag) {
+  int maxDepth(TreeNode *root) {
     if (root == nullptr)
       return 0;
-    int leftDepth = maxDepth(root->left, flag);
-    int rightDepth = maxDepth(root->right, flag);
+    int leftDepth = maxDepth(root->left);
+    int rightDepth = maxDepth(root->right);
     if (abs(leftDepth - rightDepth) > 1)
       flag = false;
+
     return max(leftDepth, rightDepth) + 1;
   }
 };

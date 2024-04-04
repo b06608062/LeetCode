@@ -1,5 +1,4 @@
-// 198. House Robber
-#include <math.h>
+#include <algorithm>
 #include <vector>
 using namespace std;
 
@@ -15,7 +14,7 @@ public:
     vector<int> moneys(size + 1);
     moneys[0] = 0;
     moneys[1] = nums[0];
-    for (int i = 2; i <= size; ++i) {
+    for (int i = 2; i <= size; i++) {
       moneys[i] = max(moneys[i - 1], moneys[i - 2] + nums[i - 1]);
     }
 

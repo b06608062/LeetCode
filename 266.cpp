@@ -1,4 +1,3 @@
-// 226. Invert Binary Tree
 using namespace std;
 
 struct TreeNode {

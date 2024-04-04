@@ -1,4 +1,3 @@
-// 105. Construct Binary Tree from Preorder and Inorder Traversal
 #include <vector>
 using namespace std;
 
@@ -15,30 +14,24 @@ struct TreeNode {
 class Solution {
 public:
   TreeNode *buildTree(vector<int> &preorder, vector<int> &inorder) {
-    return buildDNode(preorder, inorder, 0, 0, inorder.size() - 1);
+    return buildSubTree(preorder, inorder);
   }
 
-  TreeNode *buildDNode(vector<int> &preorder, vector<int> &inorder, int l1,
-                       int l2, int r2) {
-    if (l2 > r2)
-      return nullptr;
+  TreeNode *buildSubTree(vector<int> &preorder, vector<int> &inorder) {
+    if (inorder.empty())
+      return NULL;
+    auto it = find(inorder.begin(), inorder.end(), preorder.front());
 
-    int dValue = preorder[l1];
-    TreeNode *newNode = new TreeNode(dValue);
+    TreeNode *node = new TreeNode();
+    vector<int> leftInorder(inorder.begin(), it);
+    vector<int> rightInorder(it + 1, inorder.end());
 
-    if (l2 == r2) {
-      newNode->left = nullptr;
-      newNode->right = nullptr;
-      return newNode;
-    }
+    node->val = preorder.front();
+    preorder.erase(preorder.begin());
 
-    int dIndex =
-        distance(inorder.begin(), find(inorder.begin(), inorder.end(), dValue));
-    int leftCount = dIndex - l2;
-    newNode->left = buildDNode(preorder, inorder, l1 + 1, l2, dIndex - 1);
-    newNode->right =
-        buildDNode(preorder, inorder, l1 + leftCount + 1, dIndex + 1, r2);
+    node->left = buildSubTree(preorder, leftInorder);
+    node->right = buildSubTree(preorder, rightInorder);
 
-    return newNode;
+    return node;
   }
 };

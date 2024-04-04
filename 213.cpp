@@ -1,30 +1,40 @@
-// 213. House Robber II
-#include <math.h>
+#include <algorithm>
 #include <vector>
 using namespace std;
 
 class Solution {
 public:
-  int rob(vector<int> &nums) {
-    int l = nums.size();
-    if (l == 0)
+  int rob(std::vector<int> &nums) {
+    if (nums.empty())
       return 0;
-    else if (l == 1)
+    if (nums.size() == 1)
       return nums[0];
+    if (nums.size() == 2)
+      return max(nums[0], nums[1]);
 
-    vector<int> in1(l + 1);
-    in1[0] = 0;
-    in1[1] = nums[0];
-    in1[2] = nums[0];
-    vector<int> ex1(l + 1);
-    ex1[0] = 0;
-    ex1[1] = 0;
-    for (int i = 3; i < l; ++i)
-      in1[i] = max(in1[i - 1], in1[i - 2] + nums[i - 1]);
+    int res1 = helper(nums, 0, nums.size() - 2);
+    int res2 = helper(nums, 1, nums.size() - 1);
 
-    for (int i = 2; i <= l; ++i)
-      ex1[i] = max(ex1[i - 1], ex1[i - 2] + nums[i - 1]);
+    return max(res1, res2);
+  }
 
-    return max(in1[l - 1], ex1[l]);
+private:
+  int helper(vector<int> &nums, int start, int end) {
+    if (start == end)
+      return nums[start];
+
+    if (end - start == 1)
+      return max(nums[start], nums[end]);
+
+    vector<int> dp(end - start + 1);
+
+    dp[0] = nums[start];
+    dp[1] = max(nums[start], nums[start + 1]);
+
+    for (int i = 2; i < dp.size(); i++) {
+      dp[i] = max(dp[i - 1], dp[i - 2] + nums[start + i]);
+    }
+
+    return dp[dp.size() - 1];
   }
 };

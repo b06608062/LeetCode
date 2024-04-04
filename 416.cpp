@@ -1,4 +1,3 @@
-// 416. Partition Equal Subset Sum
 #include <numeric>
 #include <vector>
 using namespace std;
@@ -20,6 +19,6 @@ public:
       }
     }
 
-    return dp[target] == 1 ? true : false;
+    return dp[target] == 1;
   }
 };

@@ -1,5 +1,4 @@
-// 787. Cheapest Flights Within K Stops
-#include <math.h>
+#include <algorithm>
 #include <queue>
 #include <vector>
 using namespace std;
@@ -16,7 +15,7 @@ public:
     queue<pair<int, int>> q;
 
     q.push({src, 0});
-    for (int i = 0; i <= k; ++i) {
+    for (int i = 0; i <= k; i++) {
       if (q.empty())
         break;
       int qSize = q.size();

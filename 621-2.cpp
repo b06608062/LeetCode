@@ -1,25 +1,25 @@
-// 621. Task Scheduler
+#include <unordered_map>
 #include <vector>
 using namespace std;
 
 class Solution {
 public:
   int leastInterval(vector<char> &tasks, int n) {
-    vector<int> v(26, 0);
-    int max = 0;
-    int maxTaskCounts = 0;
-    for (auto &c : tasks) {
-      int index = c - 'A';
-      v[index]++;
-      if (v[index] > max) {
-        max = v[index];
-        maxTaskCounts = 1;
-      } else if (v[index] == max) {
-        maxTaskCounts++;
-      }
-    }
-    int spand = (max - 1) * (n + 1) + maxTaskCounts;
+    unordered_map<char, int> myMap;
+    for (auto ch : tasks)
+      myMap[ch]++;
 
-    return spand > tasks.size() ? spand : tasks.size();
+    int maxFreq = 0;
+    for (auto a : myMap)
+      maxFreq = max(maxFreq, a.second);
+
+    int result = (maxFreq - 1) * (n + 1);
+    int count = 0;
+    for (auto a : myMap) {
+      if (a.second == maxFreq)
+        count++;
+    }
+
+    return max(result + count, (int)tasks.size());
   }
 };

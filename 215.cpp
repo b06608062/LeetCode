@@ -1,4 +1,3 @@
-// 215. Kth Largest Element in an Array
 #include <queue>
 #include <vector>
 using namespace std;

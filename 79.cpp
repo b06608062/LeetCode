@@ -1,4 +1,3 @@
-// 79. Word Search
 #include <string>
 #include <vector>
 using namespace std;
@@ -15,8 +14,8 @@ public:
     this->word = word;
     row = board.size();
     col = board[0].size();
-    for (int i = 0; i < row; ++i) {
-      for (int j = 0; j < col; ++j) {
+    for (int i = 0; i < row; i++) {
+      for (int j = 0; j < col; j++) {
         vector<vector<int>> visited(row, vector<int>(col, 0));
         if (dfs(i, j, visited, 0))
           return true;

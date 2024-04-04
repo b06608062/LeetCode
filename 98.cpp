@@ -1,4 +1,3 @@
-// 98. Validate Binary Search Tree
 #include <math.h>
 using namespace std;
 
@@ -23,10 +22,10 @@ public:
     if (root->val <= min || root->val >= max)
       return false;
 
-    bool isValid = !root->left || checkBST(root->left, min, root->val);
-    if (!isValid)
-      return false;
-    else
-      return !root->right || checkBST(root->right, root->val, max);
+    if (checkBST(root->left, min, root->val)) {
+      return checkBST(root->right, root->val, max);
+    }
+
+    return false;
   }
 };

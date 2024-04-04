@@ -1,4 +1,3 @@
-// 210. Course Schedule II
 #include <algorithm>
 #include <vector>
 using namespace std;
@@ -16,7 +15,7 @@ public:
     // states: 0 = unkown, 1 = visiting, 2 = visited
     this->states = vector<int>(numCourses);
 
-    for (int i = 0; i < numCourses; ++i) {
+    for (int i = 0; i < numCourses; i++) {
       if (dfs(i))
         return vector<int>();
     }

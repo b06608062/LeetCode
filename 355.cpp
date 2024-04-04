@@ -1,4 +1,3 @@
-// 355. Design Twitter
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>

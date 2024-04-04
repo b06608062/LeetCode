@@ -1,41 +1,40 @@
-// 621. Task Scheduler
 #include <queue>
+#include <unordered_map>
 #include <vector>
 using namespace std;
 
 class Solution {
 public:
-  int time;
-  priority_queue<int> pq;
-  queue<pair<int, int>> q;
   int leastInterval(vector<char> &tasks, int n) {
-    time = 0;
-    vector<int> v(26, 0);
-    for (auto c : tasks) {
-      v[c - 'A']++;
-    }
-    for (auto i : v) {
-      if (i)
-        pq.push(i);
-    }
+    unordered_map<char, int> myMap;
+    for (auto ch : tasks)
+      myMap[ch]++;
+    priority_queue<int> pq;
+    for (auto a : myMap)
+      pq.push(a.second);
 
-    while (!pq.empty() || !q.empty()) {
-      time++;
-      if (!q.empty()) {
-        if (q.front().second == time) {
-          pq.push(q.front().first);
-          q.pop();
-        }
-      }
-      if (!pq.empty()) {
-        int task = pq.top() - 1;
+    n++;
+    int count = 0;
+    while (pq.size() > 0) {
+      int k = min(n, (int)pq.size());
+      vector<int> temp;
+      for (int i = 0; i < k; i++) {
+        int f = pq.top();
         pq.pop();
-        if (task) {
-          q.push({task, time + n + 1});
-        }
+        f--;
+        if (f != 0)
+          temp.push_back(f);
       }
+
+      if (temp.size() > 0)
+        count += n;
+      else
+        count += k;
+
+      for (auto x : temp)
+        pq.push(x);
     }
 
-    return time;
+    return count;
   }
 };

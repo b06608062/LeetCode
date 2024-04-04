@@ -1,4 +1,3 @@
-// 20. Valid Parentheses
 #include <stack>
 #include <string>
 #include <unordered_map>
@@ -7,19 +6,20 @@ using namespace std;
 class Solution {
 public:
   bool isValid(string s) {
-    stack<char> st;
-    unordered_map<char, char> m = {{'(', ')'}, {'{', '}'}, {'[', ']'}};
+    stack<char> myStack;
+    unordered_map<char, char> myMap = {{'(', ')'}, {'{', '}'}, {'[', ']'}};
     for (auto c : s) {
       if (c == '(' || c == '{' || c == '[') {
-        st.push(c);
+        myStack.push(c);
       } else {
-        if (st.empty() || m[st.top()] != c)
+        if (myStack.empty() || myMap[myStack.top()] != c)
           return false;
-        st.pop();
+        myStack.pop();
       }
     }
-    if (!st.empty())
+    if (!myStack.empty())
       return false;
+
     return true;
   }
 };

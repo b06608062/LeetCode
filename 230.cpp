@@ -1,4 +1,3 @@
-// 230. Kth Smallest Element in a BST
 using namespace std;
 
 struct TreeNode {
@@ -18,6 +17,7 @@ public:
 
   int kthSmallest(TreeNode *root, int k) {
     inOrderTraversal(root, k);
+
     return kth;
   }
 

@@ -1,7 +1,5 @@
-// 743. Network Delay Time
 // Bellman-Ford
-#include <climits>
-#include <math.h>
+#include <algorithm>
 #include <vector>
 using namespace std;
 
@@ -11,10 +9,10 @@ public:
     int max = 99 * 100 + 1;
     vector<int> dist(n + 1, max);
     dist[k] = 0;
-    for (int i = 1; i < n; ++i) {
-      for (auto t : times) {
-        int u = t[0], v = t[1], d = t[2];
-        dist[v] = min(dist[v], dist[u] + d);
+    for (int i = 1; i < n; i++) {
+      for (auto a : times) {
+        int u = a[0], v = a[1], t = a[2];
+        dist[v] = min(dist[v], dist[u] + t);
       }
     }
     int maxDist = *max_element(dist.begin() + 1, dist.end());

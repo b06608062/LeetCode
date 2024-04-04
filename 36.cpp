@@ -1,4 +1,3 @@
-// 36. Valid Sudoku
 #include <vector>
 using namespace std;
 
@@ -15,11 +14,10 @@ public:
           return false;
       }
     }
-
-    for (int i = 0; i < 9; ++i) {
+    for (int j = 0; j < 9; j++) {
       vector<int> record(10, 1);
       for (vector<char> row : board) {
-        char c = row[i];
+        char c = row[j];
         if (c == '.')
           continue;
         int num = c - '0';
@@ -27,12 +25,11 @@ public:
           return false;
       }
     }
-
-    for (int r = 0; r < 3; ++r) {
-      for (int c = 0; c < 3; ++c) {
+    for (int r = 0; r < 3; r++) {
+      for (int c = 0; c < 3; c++) {
         vector<int> record(10, 1);
-        for (int i = 0; i < 3; ++i) {
-          for (int j = 0; j < 3; ++j) {
+        for (int i = 0; i < 3; i++) {
+          for (int j = 0; j < 3; j++) {
             char ch = board[r * 3 + i][c * 3 + j];
             if (ch == '.')
               continue;

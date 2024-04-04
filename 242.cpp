@@ -1,25 +1,23 @@
-// 242. Valid Anagram
-#include <map>
 #include <string>
+#include <unordered_map>
+#include <vector>
 using namespace std;
 
 class Solution {
 public:
   bool isAnagram(string s, string t) {
+    unordered_map<char, int> myMap;
     if (s.size() != t.size())
       return false;
-
-    map<char, int> countMap;
-    for (char c : s) {
-      countMap[c]++;
+    for (int i = 0; i < s.size(); i++) {
+      myMap[s[i]]++;
+      myMap[t[i]]--;
     }
-    for (char c : t) {
-      int count = --countMap[c];
-      if (count < 0)
+    for (auto &pair : myMap) {
+      if (pair.second != 0)
         return false;
-      else if (count = 0)
-        countMap.erase(c);
     }
+
     return true;
   }
 };

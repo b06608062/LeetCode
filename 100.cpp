@@ -1,4 +1,3 @@
-// 100. Same Tree
 using namespace std;
 
 struct TreeNode {
@@ -17,17 +16,15 @@ public:
     if (p == nullptr && q == nullptr)
       return true;
 
-    bool res = true;
     if (p != nullptr && q != nullptr) {
-      if (p->val != q->val) {
-        res = false;
-      } else {
-        res = isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
+      bool flag = false;
+      if (p->val == q->val) {
+        flag = isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
       }
-    } else {
-      res = false;
+
+      return flag;
     }
 
-    return res;
+    return false;
   }
 };

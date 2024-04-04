@@ -1,4 +1,3 @@
-// 1046. Last Stone Weight
 #include <queue>
 #include <vector>
 using namespace std;

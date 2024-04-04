@@ -1,22 +1,23 @@
-// 322. Coin Change
-#include <math.h>
 #include <vector>
 using namespace std;
 
 class Solution {
 public:
   int coinChange(vector<int> &coins, int amount) {
-    vector<int> dp(amount + 1, INT_MAX);
+    int max = INT_MAX - 1;
+    sort(coins.begin(), coins.end());
+    vector<int> dp(amount + 1, max);
     dp[0] = 0;
-    for (int i = 1; i <= amount; ++i) {
-      int minCount = INT_MAX;
+
+    for (int i = 1; i <= amount; i++) {
       for (auto coin : coins) {
-        if (i - coin >= 0 && dp[i - coin] != -1)
-          minCount = min(minCount, 1 + dp[i - coin]);
+        int idx = i - coin;
+        if (idx < 0)
+          break;
+        dp[i] = min(dp[i], dp[idx] + 1);
       }
-      dp[i] = minCount == INT_MAX ? -1 : minCount;
     }
 
-    return dp[amount];
+    return dp[amount] == max ? -1 : dp[amount];
   }
 };

@@ -1,4 +1,3 @@
-// 102. Binary Tree Level Order Traversal
 #include <queue>
 #include <vector>
 using namespace std;
@@ -20,34 +19,22 @@ public:
     if (root == nullptr)
       return ans;
 
-    queue<pair<TreeNode *, int>> q1;
-    queue<pair<TreeNode *, int>> q2;
-    if (root != nullptr) {
-      q1.push({root, 1});
-      while (q1.size() > 0) {
-        auto [node, level] = q1.front();
-        q2.push({node, level});
-        q1.pop();
+    queue<TreeNode *> q;
+    q.push(root);
+    while (!q.empty()) {
+      int size = q.size();
+      vector<int> level;
+      for (int i = 0; i < size; i++) {
+        TreeNode *node = q.front();
+        q.pop();
+        level.push_back(node->val);
         if (node->left != nullptr)
-          q1.push({node->left, level + 1});
+          q.push(node->left);
         if (node->right != nullptr)
-          q1.push({node->right, level + 1});
+          q.push(node->right);
       }
+      ans.push_back(level);
     }
-
-    vector<int> *vp = new vector<int>();
-    int l = 1;
-    while (q2.size() > 0) {
-      auto [node, level] = q2.front();
-      q2.pop();
-      if (l != level) {
-        l = level;
-        ans.push_back(*vp);
-        vp = new vector<int>;
-      }
-      vp->push_back(node->val);
-    }
-    ans.push_back(*vp);
 
     return ans;
   }

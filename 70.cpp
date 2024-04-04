@@ -1,4 +1,3 @@
-// 70. Climbing Stairs
 // Time Limit Exceeded
 
 class Solution {

@@ -26,31 +26,23 @@ public:
     p->isWord = true;
   }
 
-  bool search(string word) { return searchDot(word, this->root); }
+  bool search(string word) { return searchDot(word, root, 0); }
 
-  bool searchDot(string word, DicNode *root) {
-    if (word.size() == 0)
-      return root->isWord;
+  bool searchDot(const string &word, DicNode *p, int index) {
+    if (index == word.size())
+      return p->isWord;
 
-    DicNode *p = root;
-    char c = word[0];
-    bool found = false;
+    char c = word[index];
     if (c == '.') {
       for (auto child : p->children) {
-        if (child == nullptr)
-          continue;
-        if ((found = searchDot(word.substr(1), child)))
-          break;
+        if (child != nullptr && searchDot(word, child, index + 1))
+          return true;
       }
+      return false;
     } else {
       int next = c - 'a';
-      if (p->children[next] == nullptr)
-        return false;
-
-      found = searchDot(word.substr(1), p->children[next]);
-      p = p->children[next];
+      return p->children[next] != nullptr &&
+             searchDot(word, p->children[next], index + 1);
     }
-
-    return found;
   }
 };

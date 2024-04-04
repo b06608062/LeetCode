@@ -1,4 +1,3 @@
-// 15. 3Sum
 #include <algorithm>
 #include <set>
 #include <vector>
@@ -8,9 +7,9 @@ class Solution {
 public:
   vector<vector<int>> threeSum(vector<int> &nums) {
     vector<vector<int>> ans;
-    set<vector<int>> s;
+    set<vector<int>> mySet;
     sort(nums.begin(), nums.end());
-    for (int i = 0; i < nums.size() - 2; ++i) {
+    for (int i = 0; i < nums.size() - 2; i++) {
       int target = -nums[i];
       if (target < 0)
         break;
@@ -18,8 +17,7 @@ public:
       while (left < right) {
         int towSum = nums[left] + nums[right];
         if (towSum == target) {
-          vector<int> tmp = {nums[i], nums[left], nums[right]};
-          s.insert(tmp);
+          mySet.insert({nums[i], nums[left], nums[right]});
           left++;
           right--;
         } else if (towSum < target) {
@@ -29,8 +27,8 @@ public:
         }
       }
     }
-    for (auto t : s) {
-      ans.push_back(t);
+    for (auto it : mySet) {
+      ans.push_back(it);
     }
 
     return ans;

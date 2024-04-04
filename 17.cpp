@@ -1,4 +1,3 @@
-// 17. Letter Combinations of a Phone Number
 #include <string>
 #include <unordered_map>
 #include <vector>
@@ -28,14 +27,14 @@ public:
     return ans;
   }
 
-  void helper(string subset, int start) {
-    if (start == length) {
+  void helper(string subset, int begin) {
+    if (begin == length) {
       ans.push_back(subset);
       return;
     }
-    string str = m[digits[start]];
-    for (int i = 0; i < str.length(); ++i) {
-      helper(subset + str[i], start + 1);
+    string str = m[digits[begin]];
+    for (int i = 0; i < str.length(); i++) {
+      helper(subset + str[i], begin + 1);
     }
   }
 };

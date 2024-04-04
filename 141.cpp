@@ -1,4 +1,3 @@
-// 141. Linked List Cycle
 #include <unordered_set>
 using namespace std;
 
@@ -17,8 +16,7 @@ public:
       ListNode *p = head;
       unordered_set<ListNode *> visited;
       while (p) {
-        visited.insert(p);
-        if (visited.find(p->next) != visited.end()) {
+        if (!visited.insert(p).second) {
           return true;
         }
         p = p->next;

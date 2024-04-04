@@ -1,4 +1,3 @@
-// 1448. Count Good Nodes in Binary Tree
 using namespace std;
 
 struct TreeNode {
@@ -17,6 +16,7 @@ public:
 
   int goodNodes(TreeNode *root) {
     countGoodNodes(root, -10001);
+
     return count;
   }
 

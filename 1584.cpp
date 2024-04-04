@@ -1,4 +1,3 @@
-// 1584. Min Cost to Connect All Points
 #include <math.h>
 #include <queue>
 #include <vector>
@@ -12,7 +11,7 @@ public:
   DisjoinSet(int size) {
     parent.resize(size);
     rank.resize(size, 1);
-    for (int i = 0; i < size; ++i) {
+    for (int i = 0; i < size; i++) {
       parent[i] = i;
     }
   };
@@ -42,16 +41,16 @@ public:
   }
 };
 
-auto camp = [](vector<int> &e1, vector<int> &e2) { return e1[2] > e2[2]; };
+auto comp = [](vector<int> &e1, vector<int> &e2) { return e1[2] > e2[2]; };
 
 class Solution {
 public:
   int minCostConnectPoints(vector<vector<int>> &points) {
     int size = points.size();
     DisjoinSet ds(size);
-    priority_queue<vector<int>, vector<vector<int>>, decltype(camp)> pq;
-    for (int i = 0; i < size; ++i) {
-      for (int j = i + 1; j < size; ++j) {
+    priority_queue<vector<int>, vector<vector<int>>, decltype(comp)> pq;
+    for (int i = 0; i < size; i++) {
+      for (int j = i + 1; j < size; j++) {
         int dist =
             abs(points[i][0] - points[j][0]) + abs(points[i][1] - points[j][1]);
         pq.push({i, j, dist});

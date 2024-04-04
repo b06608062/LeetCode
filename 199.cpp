@@ -1,4 +1,3 @@
-// 199. Binary Tree Right Side View
 #include <queue>
 #include <vector>
 using namespace std;
@@ -25,7 +24,7 @@ public:
     while (!q.empty()) {
       int size = q.size();
       vector<int> level;
-      for (int i = 0; i < size; ++i) {
+      for (int i = 0; i < size; i++) {
         TreeNode *node = q.front();
         q.pop();
         if (i == size - 1)

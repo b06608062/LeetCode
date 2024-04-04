@@ -1,5 +1,3 @@
-// 21. Merge Two Sorted Lists
-
 struct ListNode {
   int val;
   ListNode *next;

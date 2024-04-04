@@ -1,41 +1,32 @@
-// 15. 3Sum
-#include <algorithm>
-#include <map>
-#include <set>
 #include <vector>
 using namespace std;
 
 class Solution {
 public:
   vector<vector<int>> threeSum(vector<int> &nums) {
+    int n = nums.size();
+    sort(nums.begin(), nums.end());
     vector<vector<int>> ans;
-    map<int, int> mp;
-    vector<int> noRepeatNums;
-    for (auto num : nums)
-      ++mp[num];
-    if (mp[0] > 2)
-      ans.push_back({0, 0, 0});
-    for (auto m : mp) {
-      if (m.first != 0 && m.second > 1 && mp.find(-m.first * 2) != mp.end())
-        ans.push_back({m.first, m.first, -m.first * 2});
-      noRepeatNums.push_back(m.first);
-    }
-
-    int n = noRepeatNums.size();
-    for (int i = 0; i < n - 2; ++i) {
-      if (noRepeatNums[i] > 0)
+    for (int i = 0; i < n - 2; i++) {
+      if (i > 0 && nums[i] == nums[i - 1])
+        continue;
+      if (nums[i] > 0)
         break;
-      int t = -noRepeatNums[i];
-      int left = i + 1, right = n - 1;
-      while (left < right) {
-        int tmp = noRepeatNums[left] + noRepeatNums[right];
-        if (tmp == t)
-          ans.push_back(
-              {noRepeatNums[i], noRepeatNums[left++], noRepeatNums[right--]});
-        else if (tmp < t)
-          left++;
-        else
-          right--;
+      int l = i + 1, r = n - 1, target = -nums[i];
+      while (l < r) {
+        int sum = nums[l] + nums[r];
+        if (sum == target) {
+          ans.push_back({-target, nums[l], nums[r]});
+          while (l < r && nums[l] == nums[l + 1])
+            l++;
+          while (l < r && nums[r] == nums[r - 1])
+            r--;
+          l++, r--;
+        } else if (sum < target) {
+          l++;
+        } else {
+          r--;
+        }
       }
     }
 
