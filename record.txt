@@ -46,4 +46,9 @@
 45. Jump Game II
 134. Gas Station ?
 763. Partition Labels
-678. Valid Parenthesis String ?
+678. Valid Parenthesis String
+338. Counting Bits
+371. Sum of Two Integers
+7. Reverse Integer
+57. Insert Interval
+50. Pow(x, n)
